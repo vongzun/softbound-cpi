@@ -1,0 +1,661 @@
+DIGEST 7104e376c401c9198e5861be3e79f27e
+FTypes
+R3235:3239 Coq.Arith.EqNat <> <> lib
+R3257:3260 Coq.Lists.List <> <> lib
+R3278:3288 Coq.Arith.Compare_dec <> <> lib
+R3306:3310 Coq.omega.Omega <> <> lib
+R3328:3331 Coq.ZArith.Zdiv <> <> lib
+def 4620:4626 <> c_ident
+R4631:4633 Coq.Init.Datatypes <> nat ind
+ind 4646:4654 <> Qualifier
+constr 4669:4672 <> Safe
+constr 4678:4680 <> Seq
+constr 4686:4689 <> Tame
+R4673:4673 Types <> Qualifier ind
+R4681:4681 Types <> Qualifier ind
+R4690:4690 Types <> Qualifier ind
+ind 5264:5268 <> AType
+constr 5283:5287 <> A_Int
+constr 5300:5308 <> A_Pointer
+ind 5364:5369 <> Struct
+constr 5384:5388 <> S_Nil
+constr 5403:5408 <> S_Cons
+ind 5454:5458 <> PType
+constr 5473:5479 <> P_AType
+constr 5502:5509 <> P_Struct
+constr 5533:5538 <> P_Name
+constr 5563:5571 <> P_VoidPtr
+R5290:5294 Types <> AType ind
+R5333:5337 Types <> AType ind
+R5320:5328 Types <> Qualifier ind
+R5311:5315 Types <> PType ind
+R5392:5397 Types <> Struct ind
+R5442:5447 Types <> Struct ind
+R5432:5437 Types <> Struct ind
+R5423:5427 Types <> AType ind
+R5412:5418 Types <> c_ident def
+R5492:5496 Types <> PType ind
+R5483:5487 Types <> AType ind
+R5523:5527 Types <> PType ind
+R5513:5518 Types <> Struct ind
+R5553:5557 Types <> PType ind
+R5542:5548 Types <> c_ident def
+R5574:5578 Types <> PType ind
+ax 5595:5603 <> typeTable
+R5618:5623 Coq.Init.Datatypes <> option ind
+R5625:5630 Types <> Struct ind
+R5607:5613 Types <> c_ident def
+def 5641:5653 <> AType_mut_ind
+R5672:5676 Types <> AType ind
+def 5693:5706 <> Struct_mut_ind
+R5725:5730 Types <> Struct ind
+def 5747:5759 <> PType_mut_ind
+R5778:5782 Types <> PType ind
+def 5807:5829 <> mutual_AType_Struct_ind
+R5878:5881 Coq.Init.Logic <> conj constr
+R5945:5948 Coq.Init.Logic <> conj constr
+R6025:6037 Types <> PType_mut_ind scheme
+R6069:6070 Types <> h8 var
+R6066:6067 Types <> h7 var
+R6063:6064 Types <> h6 var
+R6060:6061 Types <> h5 var
+R6057:6058 Types <> h4 var
+R6054:6055 Types <> h3 var
+R6051:6052 Types <> h2 var
+R6048:6049 Types <> h1 var
+R6044:6046 Types <> P'' var
+R6041:6042 Types <> P' var
+R6039:6039 Types <> P var
+R5953:5966 Types <> Struct_mut_ind scheme
+R5998:5999 Types <> h8 var
+R5995:5996 Types <> h7 var
+R5992:5993 Types <> h6 var
+R5989:5990 Types <> h5 var
+R5986:5987 Types <> h4 var
+R5983:5984 Types <> h3 var
+R5980:5981 Types <> h2 var
+R5977:5978 Types <> h1 var
+R5973:5975 Types <> P'' var
+R5970:5971 Types <> P' var
+R5968:5968 Types <> P var
+R5885:5897 Types <> AType_mut_ind scheme
+R5929:5930 Types <> h8 var
+R5926:5927 Types <> h7 var
+R5923:5924 Types <> h6 var
+R5920:5921 Types <> h5 var
+R5917:5918 Types <> h4 var
+R5914:5915 Types <> h3 var
+R5911:5912 Types <> h2 var
+R5908:5909 Types <> h1 var
+R5904:5906 Types <> P'' var
+R5901:5902 Types <> P' var
+R5899:5899 Types <> P var
+def 6085:6095 <> sizeOfAType
+R6102:6106 Types <> AType ind
+R6111:6113 Coq.Init.Datatypes <> nat ind
+R6126:6126 Types <> t var
+R6137:6141 Types <> A_Int constr
+R6152:6160 Types <> A_Pointer constr
+def 6188:6199 <> sizeOfStruct
+R6206:6211 Types <> Struct ind
+R6216:6218 Coq.Init.Datatypes <> nat ind
+R6231:6231 Types <> s var
+R6243:6247 Types <> S_Nil constr
+R6258:6263 Types <> S_Cons constr
+R6290:6292 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R6275:6286 Types <> sizeOfStruct def
+R6293:6303 Types <> sizeOfAType def
+def 6329:6339 <> sizeOfPType
+R6346:6350 Types <> PType ind
+R6355:6360 Coq.Init.Datatypes <> option ind
+R6362:6364 Coq.Init.Datatypes <> nat ind
+R6377:6377 Types <> p var
+R6388:6394 Types <> P_AType constr
+R6401:6404 Coq.Init.Datatypes <> Some constr
+R6407:6417 Types <> sizeOfAType def
+R6426:6433 Types <> P_Struct constr
+R6440:6443 Coq.Init.Datatypes <> Some constr
+R6446:6457 Types <> sizeOfStruct def
+R6466:6471 Types <> P_Name constr
+R6491:6499 Types <> typeTable defax
+R6517:6520 Coq.Init.Datatypes <> Some constr
+R6527:6530 Coq.Init.Datatypes <> Some constr
+R6533:6544 Types <> sizeOfStruct def
+R6556:6559 Coq.Init.Datatypes <> None constr
+R6564:6567 Coq.Init.Datatypes <> None constr
+R6582:6590 Types <> P_VoidPtr constr
+R6595:6598 Coq.Init.Datatypes <> Some constr
+def 6622:6636 <> getStructOffset
+R6643:6648 Types <> Struct ind
+R6657:6663 Types <> c_ident def
+R6678:6683 Coq.Init.Datatypes <> option ind
+R6685:6687 Coq.Init.Datatypes <> nat ind
+R6700:6700 Types <> s var
+R6711:6715 Types <> S_Nil constr
+R6720:6723 Coq.Init.Datatypes <> None constr
+R6729:6734 Types <> S_Cons constr
+R6755:6761 Coq.Arith.EqNat <> beq_nat def
+R6765:6766 Types <> id var
+R6813:6827 Types <> getStructOffset def
+R6832:6833 Types <> id var
+R6850:6853 Coq.Init.Datatypes <> Some constr
+R6860:6863 Coq.Init.Datatypes <> Some constr
+R6867:6869 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R6870:6880 Types <> sizeOfAType def
+R6893:6896 Coq.Init.Datatypes <> None constr
+R6901:6904 Coq.Init.Datatypes <> None constr
+R6784:6787 Coq.Init.Datatypes <> Some constr
+def 6934:6946 <> getStructType
+R6953:6958 Types <> Struct ind
+R6967:6973 Types <> c_ident def
+R6988:6993 Coq.Init.Datatypes <> option ind
+R6995:6999 Types <> AType ind
+R7012:7012 Types <> s var
+R7023:7027 Types <> S_Nil constr
+R7032:7035 Coq.Init.Datatypes <> None constr
+R7041:7046 Types <> S_Cons constr
+R7067:7073 Coq.Arith.EqNat <> beq_nat def
+R7077:7078 Types <> id var
+R7118:7130 Types <> getStructType def
+R7135:7136 Types <> id var
+R7096:7099 Coq.Init.Datatypes <> Some constr
+def 7156:7171 <> getStructNthType
+R7178:7183 Types <> Struct ind
+R7193:7195 Coq.Init.Datatypes <> nat ind
+R7210:7215 Coq.Init.Datatypes <> option ind
+R7217:7221 Types <> AType ind
+R7234:7234 Types <> s var
+R7245:7249 Types <> S_Nil constr
+R7254:7257 Coq.Init.Datatypes <> None constr
+R7263:7268 Types <> S_Cons constr
+R7290:7292 Types <> ith var
+R7305:7305 Coq.Init.Datatypes <> O constr
+R7310:7313 Coq.Init.Datatypes <> Some constr
+R7323:7323 Coq.Init.Datatypes <> S constr
+R7333:7348 Types <> getStructNthType def
+def 7386:7396 <> getNthPType
+R7402:7406 Types <> PType ind
+R7416:7418 Coq.Init.Datatypes <> nat ind
+R7422:7427 Coq.Init.Datatypes <> option ind
+R7429:7433 Types <> AType ind
+R7446:7446 Types <> p var
+R7458:7464 Types <> P_AType constr
+R7482:7484 Types <> ith var
+R7498:7498 Coq.Init.Datatypes <> O constr
+R7503:7506 Coq.Init.Datatypes <> Some constr
+R7521:7524 Coq.Init.Datatypes <> None constr
+R7538:7545 Types <> P_Struct constr
+R7552:7567 Types <> getStructNthType def
+R7571:7573 Types <> ith var
+R7579:7584 Types <> P_Name constr
+R7603:7611 Types <> typeTable defax
+R7627:7630 Coq.Init.Datatypes <> Some constr
+R7637:7652 Types <> getStructNthType def
+R7656:7658 Types <> ith var
+R7666:7669 Coq.Init.Datatypes <> None constr
+R7674:7677 Coq.Init.Datatypes <> None constr
+R7691:7699 Types <> P_VoidPtr constr
+R7704:7707 Coq.Init.Datatypes <> None constr
+ind 7727:7736 <> atypeEqual
+constr 7771:7784 <> atypeEqual_Int
+constr 7815:7832 <> atypeEqual_Pointer
+ind 7958:7968 <> structEqual
+constr 8004:8018 <> structEqual_Nil
+constr 8050:8065 <> structEqual_Cons
+ind 8211:8220 <> ptypeEqual
+constr 8254:8269 <> ptypeEqual_AType
+constr 8363:8379 <> ptypeEqual_Struct
+constr 8475:8489 <> ptypeEqual_Name
+constr 8653:8669 <> ptypeEqual_EqName
+constr 8727:8744 <> ptypeEqual_VoidPtr
+R7749:7753 Types <> AType ind
+R7740:7744 Types <> AType ind
+R7982:7987 Types <> Struct ind
+R7972:7977 Types <> Struct ind
+R8233:8237 Types <> PType ind
+R8224:8228 Types <> PType ind
+R7788:7797 Types <> atypeEqual ind
+R7805:7809 Types <> A_Int constr
+R7799:7803 Types <> A_Int constr
+R7906:7915 Types <> atypeEqual ind
+R7936:7944 Types <> A_Pointer constr
+R7949:7950 Types <> q2 var
+R7946:7947 Types <> p2 var
+R7918:7926 Types <> A_Pointer constr
+R7931:7932 Types <> q1 var
+R7928:7929 Types <> p1 var
+R7890:7892 Coq.Init.Logic <> :type_scope:x_'='_x not
+R7888:7889 Types <> q1 var
+R7893:7894 Types <> q2 var
+R7862:7871 Types <> ptypeEqual ind
+R7876:7877 Types <> p2 var
+R7873:7874 Types <> p1 var
+R8022:8032 Types <> structEqual ind
+R8040:8044 Types <> S_Nil constr
+R8034:8038 Types <> S_Nil constr
+R8156:8166 Types <> structEqual ind
+R8188:8193 Types <> S_Cons constr
+R8202:8203 Types <> s2 var
+R8199:8200 Types <> t2 var
+R8195:8197 Types <> id2 var
+R8169:8174 Types <> S_Cons constr
+R8183:8184 Types <> s1 var
+R8180:8181 Types <> t1 var
+R8176:8178 Types <> id1 var
+R8129:8139 Types <> structEqual ind
+R8144:8145 Types <> s2 var
+R8141:8142 Types <> s1 var
+R8103:8112 Types <> atypeEqual ind
+R8117:8118 Types <> t2 var
+R8114:8115 Types <> t1 var
+R8322:8331 Types <> ptypeEqual ind
+R8347:8353 Types <> P_AType constr
+R8355:8356 Types <> t2 var
+R8334:8340 Types <> P_AType constr
+R8342:8343 Types <> t1 var
+R8294:8303 Types <> atypeEqual ind
+R8308:8309 Types <> t2 var
+R8305:8306 Types <> t1 var
+R8432:8441 Types <> ptypeEqual ind
+R8458:8465 Types <> P_Struct constr
+R8467:8468 Types <> s2 var
+R8444:8451 Types <> P_Struct constr
+R8453:8454 Types <> s1 var
+R8404:8414 Types <> structEqual ind
+R8419:8420 Types <> s2 var
+R8416:8417 Types <> s1 var
+R8614:8623 Types <> ptypeEqual ind
+R8638:8643 Types <> P_Name constr
+R8645:8646 Types <> n2 var
+R8626:8631 Types <> P_Name constr
+R8633:8634 Types <> n1 var
+R8586:8596 Types <> structEqual ind
+R8601:8602 Types <> s2 var
+R8598:8599 Types <> s1 var
+R8565:8567 Coq.Init.Logic <> :type_scope:x_'='_x not
+R8553:8561 Types <> typeTable defax
+R8563:8564 Types <> n2 var
+R8568:8571 Coq.Init.Datatypes <> Some constr
+R8573:8574 Types <> s2 var
+R8532:8534 Coq.Init.Logic <> :type_scope:x_'='_x not
+R8520:8528 Types <> typeTable defax
+R8530:8531 Types <> n1 var
+R8535:8538 Coq.Init.Datatypes <> Some constr
+R8540:8541 Types <> s1 var
+R8690:8699 Types <> ptypeEqual ind
+R8713:8718 Types <> P_Name constr
+R8720:8720 Types <> n var
+R8702:8707 Types <> P_Name constr
+R8709:8709 Types <> n var
+R8748:8757 Types <> ptypeEqual ind
+R8769:8777 Types <> P_VoidPtr constr
+R8759:8767 Types <> P_VoidPtr constr
+ind 8794:8809 <> optionAtypeEqual
+constr 8858:8878 <> optionAtypeEqual_none
+constr 8913:8933 <> optionAtypeEqual_some
+R8829:8834 Coq.Init.Datatypes <> option ind
+R8836:8840 Types <> AType ind
+R8813:8818 Coq.Init.Datatypes <> option ind
+R8820:8824 Types <> AType ind
+R8882:8897 Types <> optionAtypeEqual ind
+R8904:8907 Coq.Init.Datatypes <> None constr
+R8899:8902 Coq.Init.Datatypes <> None constr
+R9025:9040 Types <> optionAtypeEqual ind
+R9052:9055 Coq.Init.Datatypes <> Some constr
+R9057:9058 Types <> a' var
+R9043:9046 Coq.Init.Datatypes <> Some constr
+R9048:9048 Types <> a var
+R8978:8987 Types <> atypeEqual ind
+R8991:8992 Types <> a' var
+R8989:8989 Types <> a var
+def 9073:9090 <> atypeEqual_mut_ind
+R9109:9118 Types <> atypeEqual ind
+def 9135:9153 <> structEqual_mut_ind
+R9172:9182 Types <> structEqual ind
+def 9199:9216 <> ptypeEqual_mut_ind
+R9235:9244 Types <> ptypeEqual ind
+def 9269:9303 <> mutual_atype_struct_ptype_Equal_ind
+R9355:9358 Coq.Init.Logic <> conj constr
+R9428:9431 Coq.Init.Logic <> conj constr
+R9512:9529 Types <> ptypeEqual_mut_ind scheme
+R9564:9565 Types <> h9 var
+R9561:9562 Types <> h8 var
+R9558:9559 Types <> h7 var
+R9555:9556 Types <> h6 var
+R9552:9553 Types <> h5 var
+R9549:9550 Types <> h4 var
+R9546:9547 Types <> h3 var
+R9543:9544 Types <> h2 var
+R9540:9541 Types <> h1 var
+R9536:9538 Types <> P'' var
+R9533:9534 Types <> P' var
+R9531:9531 Types <> P var
+R9435:9453 Types <> structEqual_mut_ind scheme
+R9488:9489 Types <> h9 var
+R9485:9486 Types <> h8 var
+R9482:9483 Types <> h7 var
+R9479:9480 Types <> h6 var
+R9476:9477 Types <> h5 var
+R9473:9474 Types <> h4 var
+R9470:9471 Types <> h3 var
+R9467:9468 Types <> h2 var
+R9464:9465 Types <> h1 var
+R9460:9462 Types <> P'' var
+R9457:9458 Types <> P' var
+R9455:9455 Types <> P var
+R9362:9379 Types <> atypeEqual_mut_ind scheme
+R9414:9415 Types <> h9 var
+R9411:9412 Types <> h8 var
+R9408:9409 Types <> h7 var
+R9405:9406 Types <> h6 var
+R9402:9403 Types <> h5 var
+R9399:9400 Types <> h4 var
+R9396:9397 Types <> h3 var
+R9393:9394 Types <> h2 var
+R9390:9391 Types <> h1 var
+R9386:9388 Types <> P'' var
+R9383:9384 Types <> P' var
+R9381:9381 Types <> P var
+def 9582:9592 <> convertible
+R9602:9606 Types <> AType ind
+R9627:9627 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9630:9631 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9634:9634 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9628:9629 Types <> t1 var
+R9632:9633 Types <> t2 var
+R9645:9645 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9651:9652 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9658:9658 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9646:9650 Types <> A_Int constr
+R9653:9657 Types <> A_Int constr
+R9663:9666 Coq.Init.Logic <> True ind
+R9672:9672 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9678:9679 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9693:9694 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9673:9677 Types <> A_Int constr
+R9680:9688 Types <> A_Pointer constr
+R9699:9702 Coq.Init.Logic <> True ind
+R9710:9710 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9724:9725 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9731:9731 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9711:9719 Types <> A_Pointer constr
+R9726:9730 Types <> A_Int constr
+R9759:9762 Types <> Safe constr
+R9767:9771 Coq.Init.Logic <> False ind
+R9783:9786 Coq.Init.Logic <> True ind
+R9800:9800 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9816:9817 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9833:9833 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9801:9809 Types <> A_Pointer constr
+R9818:9826 Types <> A_Pointer constr
+R9848:9848 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9851:9852 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9855:9855 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9868:9868 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9873:9874 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9879:9879 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9869:9872 Types <> Safe constr
+R9875:9878 Types <> Safe constr
+R9884:9893 Types <> ptypeEqual ind
+R9907:9907 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9911:9912 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9916:9916 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9908:9910 Types <> Seq constr
+R9913:9915 Types <> Seq constr
+R9921:9930 Types <> ptypeEqual ind
+R9944:9944 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9949:9950 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9954:9954 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9945:9948 Types <> Safe constr
+R9951:9953 Types <> Seq constr
+R9959:9968 Types <> ptypeEqual ind
+R9982:9982 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9986:9987 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9992:9992 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9983:9985 Types <> Seq constr
+R9988:9991 Types <> Safe constr
+R9997:10006 Types <> ptypeEqual ind
+R10020:10020 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10025:10026 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10031:10031 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10021:10024 Types <> Tame constr
+R10027:10030 Types <> Tame constr
+R10036:10039 Coq.Init.Logic <> True ind
+R10051:10055 Coq.Init.Logic <> False ind
+def 10087:10091 <> isPtr
+R10097:10101 Types <> AType ind
+R10123:10123 Types <> t var
+R10135:10143 Types <> A_Pointer constr
+R10152:10155 Coq.Init.Logic <> True ind
+R10166:10170 Coq.Init.Logic <> False ind
+ind 10195:10205 <> isTameAType
+constr 10230:10244 <> isTameAType_Int
+constr 10270:10288 <> isTameAType_Pointer
+ind 10360:10371 <> isTameStruct
+constr 10397:10412 <> isTameStruct_Nil
+constr 10439:10455 <> isTameStruct_Cons
+ind 10559:10569 <> isTamePType
+constr 10594:10610 <> isTamePType_AType
+constr 10674:10691 <> isTamePType_Struct
+constr 10757:10772 <> isTamePType_Name
+constr 10872:10890 <> isTamePType_VoidPtr
+R10209:10213 Types <> AType ind
+R10375:10380 Types <> Struct ind
+R10573:10577 Types <> PType ind
+R10248:10258 Types <> isTameAType ind
+R10260:10264 Types <> A_Int constr
+R10323:10333 Types <> isTameAType ind
+R10336:10344 Types <> A_Pointer constr
+R10348:10351 Types <> Tame constr
+R10346:10346 Types <> p var
+R10306:10316 Types <> isTamePType ind
+R10318:10318 Types <> p var
+R10416:10427 Types <> isTameStruct ind
+R10429:10433 Types <> S_Nil constr
+R10524:10535 Types <> isTameStruct ind
+R10538:10543 Types <> S_Cons constr
+R10550:10550 Types <> s var
+R10548:10548 Types <> t var
+R10545:10546 Types <> id var
+R10501:10512 Types <> isTameStruct ind
+R10514:10514 Types <> s var
+R10479:10489 Types <> isTameAType ind
+R10491:10491 Types <> t var
+R10646:10656 Types <> isTamePType ind
+R10659:10665 Types <> P_AType constr
+R10667:10667 Types <> t var
+R10629:10639 Types <> isTameAType ind
+R10641:10641 Types <> t var
+R10728:10738 Types <> isTamePType ind
+R10741:10748 Types <> P_Struct constr
+R10750:10750 Types <> s var
+R10710:10721 Types <> isTameStruct ind
+R10723:10723 Types <> s var
+R10845:10855 Types <> isTamePType ind
+R10858:10863 Types <> P_Name constr
+R10865:10865 Types <> n var
+R10822:10833 Types <> isTameStruct ind
+R10835:10835 Types <> s var
+R10804:10806 Coq.Init.Logic <> :type_scope:x_'='_x not
+R10793:10801 Types <> typeTable defax
+R10803:10803 Types <> n var
+R10807:10810 Coq.Init.Datatypes <> Some constr
+R10812:10812 Types <> s var
+R10894:10904 Types <> isTamePType ind
+R10906:10914 Types <> P_VoidPtr constr
+def 10933:10941 <> isNotVoid
+R10948:10952 Types <> PType ind
+R10973:10973 Types <> p var
+R10984:10992 Types <> P_VoidPtr constr
+R10997:11001 Coq.Init.Logic <> False ind
+R11012:11015 Coq.Init.Logic <> True ind
+ind 11038:11045 <> wf_AType
+constr 11070:11077 <> wf_A_Int
+constr 11099:11114 <> wf_A_SafePointer
+constr 11203:11217 <> wf_A_SeqPointer
+constr 11305:11320 <> wf_A_TamePointer
+ind 11414:11422 <> wf_Struct
+constr 11448:11455 <> wf_S_Nil
+constr 11479:11487 <> wf_S_Cons
+ind 11571:11578 <> wf_PType
+constr 11603:11612 <> wf_P_AType
+constr 11674:11684 <> wf_P_Struct
+constr 11744:11752 <> wf_P_Name
+constr 11845:11856 <> wf_P_VoidPtr
+R11049:11053 Types <> AType ind
+R11426:11431 Types <> Struct ind
+R11582:11586 Types <> PType ind
+R11080:11087 Types <> wf_AType ind
+R11089:11093 Types <> A_Int constr
+R11171:11178 Types <> wf_AType ind
+R11181:11189 Types <> A_Pointer constr
+R11193:11196 Types <> Safe constr
+R11191:11191 Types <> p var
+R11152:11160 Types <> isNotVoid def
+R11162:11162 Types <> p var
+R11133:11140 Types <> wf_PType ind
+R11142:11142 Types <> p var
+R11274:11281 Types <> wf_AType ind
+R11284:11292 Types <> A_Pointer constr
+R11296:11298 Types <> Seq constr
+R11294:11294 Types <> p var
+R11255:11263 Types <> isNotVoid def
+R11265:11265 Types <> p var
+R11236:11243 Types <> wf_PType ind
+R11245:11245 Types <> p var
+R11380:11387 Types <> wf_AType ind
+R11390:11398 Types <> A_Pointer constr
+R11402:11405 Types <> Tame constr
+R11400:11400 Types <> p var
+R11361:11368 Types <> wf_PType ind
+R11370:11370 Types <> p var
+R11339:11349 Types <> isTamePType ind
+R11351:11351 Types <> p var
+R11459:11467 Types <> wf_Struct ind
+R11469:11473 Types <> S_Nil constr
+R11539:11547 Types <> wf_Struct ind
+R11550:11555 Types <> S_Cons constr
+R11562:11562 Types <> s var
+R11560:11560 Types <> t var
+R11557:11558 Types <> id var
+R11524:11532 Types <> wf_Struct ind
+R11534:11534 Types <> s var
+R11510:11517 Types <> wf_AType ind
+R11519:11519 Types <> t var
+R11649:11656 Types <> wf_PType ind
+R11659:11665 Types <> P_AType constr
+R11667:11667 Types <> t var
+R11630:11637 Types <> wf_AType ind
+R11639:11639 Types <> t var
+R11718:11725 Types <> wf_PType ind
+R11728:11735 Types <> P_Struct constr
+R11737:11737 Types <> s var
+R11703:11711 Types <> wf_Struct ind
+R11713:11713 Types <> s var
+R11821:11828 Types <> wf_PType ind
+R11831:11836 Types <> P_Name constr
+R11838:11838 Types <> n var
+R11801:11809 Types <> wf_Struct ind
+R11811:11811 Types <> s var
+R11784:11786 Coq.Init.Logic <> :type_scope:x_'='_x not
+R11773:11781 Types <> typeTable defax
+R11783:11783 Types <> n var
+R11787:11790 Coq.Init.Datatypes <> Some constr
+R11792:11792 Types <> s var
+R11859:11866 Types <> wf_PType ind
+R11868:11876 Types <> P_VoidPtr constr
+def 11890:11905 <> wf_AType_mut_ind
+R11924:11931 Types <> wf_AType ind
+def 11948:11964 <> wf_Struct_mut_ind
+R11983:11991 Types <> wf_Struct ind
+def 12008:12023 <> wf_PType_mut_ind
+R12042:12049 Types <> wf_PType ind
+def 12074:12105 <> mutual_wf_AType_Struct_PType_ind
+R12161:12164 Coq.Init.Logic <> conj constr
+R12236:12239 Coq.Init.Logic <> conj constr
+R12322:12337 Types <> wf_PType_mut_ind scheme
+R12375:12377 Types <> h10 var
+R12372:12373 Types <> h9 var
+R12369:12370 Types <> h8 var
+R12366:12367 Types <> h7 var
+R12363:12364 Types <> h6 var
+R12360:12361 Types <> h5 var
+R12357:12358 Types <> h4 var
+R12354:12355 Types <> h3 var
+R12351:12352 Types <> h2 var
+R12348:12349 Types <> h1 var
+R12344:12346 Types <> P'' var
+R12341:12342 Types <> P' var
+R12339:12339 Types <> P var
+R12243:12259 Types <> wf_Struct_mut_ind scheme
+R12297:12299 Types <> h10 var
+R12294:12295 Types <> h9 var
+R12291:12292 Types <> h8 var
+R12288:12289 Types <> h7 var
+R12285:12286 Types <> h6 var
+R12282:12283 Types <> h5 var
+R12279:12280 Types <> h4 var
+R12276:12277 Types <> h3 var
+R12273:12274 Types <> h2 var
+R12270:12271 Types <> h1 var
+R12266:12268 Types <> P'' var
+R12263:12264 Types <> P' var
+R12261:12261 Types <> P var
+R12168:12183 Types <> wf_AType_mut_ind scheme
+R12221:12223 Types <> h10 var
+R12218:12219 Types <> h9 var
+R12215:12216 Types <> h8 var
+R12212:12213 Types <> h7 var
+R12209:12210 Types <> h6 var
+R12206:12207 Types <> h5 var
+R12203:12204 Types <> h4 var
+R12200:12201 Types <> h3 var
+R12197:12198 Types <> h2 var
+R12194:12195 Types <> h1 var
+R12190:12192 Types <> P'' var
+R12187:12188 Types <> P' var
+R12185:12185 Types <> P var
+def 12394:12401 <> nat_of_Z
+R12407:12407 Coq.Numbers.BinNums <> Z ind
+R12412:12414 Coq.Init.Datatypes <> nat ind
+R12427:12427 Types <> z var
+R12438:12439 Coq.Numbers.BinNums <> Z0 constr
+R12444:12444 Coq.Init.Datatypes <> O constr
+R12450:12453 Coq.Numbers.BinNums <> Zpos constr
+R12460:12467 Coq.PArith.BinPos <> nat_of_P syndef
+R12475:12478 Coq.Numbers.BinNums <> Zneg constr
+R12485:12485 Coq.Init.Datatypes <> O constr
+def 12506:12509 <> mmod
+R12519:12521 Coq.Init.Datatypes <> nat ind
+R12526:12531 Coq.Init.Datatypes <> option ind
+R12533:12535 Coq.Init.Datatypes <> nat ind
+R12548:12548 Types <> m var
+R12560:12560 Coq.Init.Datatypes <> O constr
+R12565:12568 Coq.Init.Datatypes <> None constr
+R12574:12574 Coq.Init.Datatypes <> S constr
+R12637:12645 Coq.Arith.Compare_dec <> le_lt_dec def
+R12649:12649 Types <> q var
+R12647:12647 Types <> p var
+R12663:12666 Coq.Init.Specif <> left constr
+R12731:12734 Coq.Init.Datatypes <> Some constr
+R12737:12744 Types <> nat_of_Z def
+R12747:12750 Coq.ZArith.Zdiv <> Zmod syndef
+R12772:12779 Coq.ZArith.BinInt <> Z_of_nat syndef
+R12781:12781 Types <> m var
+R12753:12760 Coq.ZArith.BinInt <> Z_of_nat syndef
+R12764:12766 Coq.Init.Peano <> :nat_scope:x_'-'_x not
+R12763:12763 Types <> q var
+R12767:12767 Types <> p var
+R12792:12796 Coq.Init.Specif <> right constr
+R12858:12861 Coq.Init.Datatypes <> Some constr
+R12865:12868 Coq.Init.Peano <> :nat_scope:x_'-'_x not
+R12916:12916 Coq.Init.Peano <> :nat_scope:x_'-'_x not
+R12864:12864 Types <> m var
+R12869:12876 Types <> nat_of_Z def
+R12879:12882 Coq.ZArith.Zdiv <> Zmod syndef
+R12904:12911 Coq.ZArith.BinInt <> Z_of_nat syndef
+R12913:12913 Types <> m var
+R12885:12892 Coq.ZArith.BinInt <> Z_of_nat syndef
+R12896:12898 Coq.Init.Peano <> :nat_scope:x_'-'_x not
+R12895:12895 Types <> p var
+R12899:12899 Types <> q var

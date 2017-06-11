@@ -1,0 +1,21 @@
+Axioms.vo: Axioms.v Types.vo Envs.vo
+Axioms.vi: Axioms.v Types.vo Envs.vo 
+CSemantics.vo: CSemantics.v Types.vo Envs.vo CSyntax.vo
+CSemantics.vi: CSemantics.v Types.vo Envs.vo CSyntax.vo
+CSyntax.vo: CSyntax.v Types.vo Envs.vo
+CSyntax.vi: CSyntax.v Types.vo Envs.vo
+Envs.vo: Envs.v Types.vo
+Envs.vi: Envs.v Types.vo
+Libs.vo: Libs.v Types.vo Envs.vo CSyntax.vo CSemantics.vo Axioms.vo
+Libs.vi: Libs.v Types.vo Envs.vo CSyntax.vo CSemantics.vo Axioms.vo
+Props.vo: Props.v Types.vo Envs.vo CSyntax.vo CSemantics.vo Axioms.vo Libs.vo
+Props.vi: Props.v Types.vo Envs.vo CSyntax.vo CSemantics.vo Axioms.vo Libs.vo
+Types.vo: Types.v
+Types.vi: Types.v
+Axioms.html: Axioms.v Types.html Envs.html
+CSemantics.html: CSemantics.v Types.html Envs.html CSyntax.html
+CSyntax.html: CSyntax.v Types.html Envs.html
+Envs.html: Envs.v Types.html
+Libs.html: Libs.v Types.html Envs.html CSyntax.html CSemantics.html Axioms.html
+Props.html: Props.v Types.html Envs.html CSyntax.html CSemantics.html Axioms.html Libs.html
+Types.html: Types.v
