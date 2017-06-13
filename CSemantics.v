@@ -74,19 +74,24 @@ Definition Error (R: Result) := (R = Abort) \/ (R = OutofMem).
 
 *)
 Definition dataCast (to:AType) (d:Data) (from:AType) : option Data :=
-  match (to, d, from) with
-  | (A_Int, (v, (b, e)), (A_Pointer _ _)) => Some (v, (b, e))
-  | (A_Pointer p Safe, (v, (b, e)), A_Int) => Some (0, (0, 0))
-  | (A_Pointer p Seq, (v, (b, e)), A_Int) => Some (v, (0, 0))
-  | (A_Pointer p Tame, (v, (b, e)), A_Int) => Some (v, (0, 0))
-  | (A_Pointer _ Safe, (v, (b, e)), (A_Pointer _ Seq)) => Some (v, (b, e))
-  | (A_Pointer _ Seq, (v, (b, e)), (A_Pointer p Safe)) => 
-     match (sizeOfPType p) with 
-     | None => None
-     | Some s => Some (v, (v, v+s))
-     end
-  | _ => Some d
-  end.
+  if isSensitiveDec to then
+    match (to, d, from) with
+    | (A_Int, (v, (b, e)), (A_Pointer _ _)) => Some (v, (b, e))
+    | (A_Pointer p Safe, (v, (b, e)), A_Int) => Some (0, (0, 0))
+    | (A_Pointer p Seq, (v, (b, e)), A_Int) => Some (v, (0, 0))
+    | (A_Pointer p Tame, (v, (b, e)), A_Int) => Some (v, (0, 0))
+    | (A_Pointer _ Safe, (v, (b, e)), (A_Pointer _ Seq)) => Some (v, (b, e))
+    | (A_Pointer _ Seq, (v, (b, e)), (A_Pointer p Safe)) => 
+       match (sizeOfPType p) with 
+       | None => None
+       | Some s => Some (v, (v, v+s))
+       end
+    | _ => Some d
+    end
+  else
+    match d with
+    | (v, (b, e)) => Some (v, (0, 0))
+    end.
 
 Definition assertion_dataCast (to:AType) (d:Data) (from:AType) : Prop :=
   match (to,d, from) with

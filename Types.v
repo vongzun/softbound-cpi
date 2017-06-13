@@ -138,6 +138,34 @@ with PType : Set :=
   | P_VoidPtr: PType
   .
 
+(* SE project 2017 *)
+Fixpoint isSensitive_A (t : AType) : Prop :=
+  match t with
+  | A_Int => False
+  | A_Pointer p _ => isSensitive_P p
+  end
+
+with isSensitive_P (t : PType) : Prop :=
+  match t with
+  | P_AType t' => isSensitive_A t'
+  | P_Struct s => match s with
+                  | S_Nil => True
+                  | S_Cons _ t' s' => isSensitive_A t' \/ isSensitive_S s'
+                  end
+  | P_Name _ => True
+  | P_VoidPtr => True
+  end
+
+with isSensitive_S (t : Struct) : Prop :=
+  match t with
+  | S_Nil => True
+  | S_Cons _ t' s' => isSensitive_A t' \/ isSensitive_S s'
+  end.
+
+Parameter isSensitiveDec : forall t : AType, {isSensitive_A t} 
+                                              + {~isSensitive_A t}.
+(* SE project 2017 *)
+
 Parameter typeTable : c_ident -> option Struct.
 
 Scheme AType_mut_ind := Induction for AType Sort Prop

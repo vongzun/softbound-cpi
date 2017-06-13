@@ -99,9 +99,9 @@ Axiom updateTameTypeInfo_inversion : forall TI loc p n TI',
     loc <= l < loc + n -> atypeEqual (TI' l) (A_Pointer P_VoidPtr Tame)
   ).
 
-Axiom malloc__inversion : forall E n M' S' TI' loc,
-  malloc E n = Some ((MkEnv M' S' TI'), loc) ->
-  exists M, exists TI, E = MkEnv M S' TI /\                                                                         (*stack is unchanged*)   
+Axiom malloc__inversion : forall E n M' Ms' S' TI' loc,
+  malloc E n = Some ((MkEnv M' Ms' S' TI'), loc) ->
+  exists M, exists Ms, exists TI, E = MkEnv M Ms S' TI /\                                                                         (*stack is unchanged*)   
   (baseAddress<=loc /\ loc+ n < maxAddress /\ n > 0) /\
   (forall l v, 
     accessMemMeta M l = Some v -> accessMemMeta M' l = Some v
