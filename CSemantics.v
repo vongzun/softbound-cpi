@@ -50,6 +50,7 @@ Definition Data := (Value*Meta)%type.
 Inductive Result: Set :=  
 | ROK : Result
 | RLoc : Loc -> Result
+| RLocUnsafe : Loc -> Result
 | RVal : (Data*AType) -> Result
 | Abort : Result
 | OutofMem : Result
@@ -405,7 +406,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Safe rhs) 
                   (RVal ((loc, (0, 0)), (A_Pointer p Safe))) 
                   (A_Pointer p Safe) 
-                  (MkEnv E''.(mem) E''.(mem_normal) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) (*UNSAFE MEM*) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_Seq : forall E E' E'' rhs ds loc n be size p,
     s_rhs E rhs (RVal ds) A_Int E'-> (* syntax check *)
     wf_AType (A_Pointer p Seq) ->
@@ -416,7 +417,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Seq rhs) 
                   (RVal ((loc, (loc, loc+n)), (A_Pointer p Seq))) 
                   (A_Pointer p Seq) 
-                  (MkEnv E''.(mem) E''.(mem_normal) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) (*UNSAFE MEM*) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_Tame : forall E E' E'' rhs ds loc n be p size,
     s_rhs E rhs (RVal ds) A_Int E'-> (* syntax check *)
     wf_AType (A_Pointer p Tame) ->
@@ -427,7 +428,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Tame rhs) 
                   (RVal ((loc, (loc, loc+n)), (A_Pointer p Tame))) 
                   (A_Pointer p Tame)
-                  (MkEnv E''.(mem) E''.(mem_normal) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) (*UNSAFE MEM*) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_ErrorProp : forall E E' rhs R t t' p q,
     s_rhs E rhs R t E'-> Error R -> (* error *)
     wf_AType (A_Pointer p q) ->

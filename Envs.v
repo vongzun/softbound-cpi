@@ -141,7 +141,7 @@ Definition TypeInfo := Loc -> AType.
 (******************************************************************)
 Record Env : Set := MkEnv {  
   mem : Mem; 
-  mem_normal : Mem;
+  mem_unsafe : Mem;
   stack : Stack;
   typeInfo : TypeInfo }.
 
@@ -365,7 +365,7 @@ Definition wfMem (M: Mem) (TI : TypeInfo) :Prop :=
 
 Definition wfEnv (E:Env) : Prop := 
   wfMem E.(mem) E.(typeInfo) /\ 
-  wfMem E.(mem_safe) E.(typeInfo) /\
+  wfMem E.(mem_unsafe) E.(typeInfo) /\
   wfStack E.(stack) /\
   (forall v loc t,                                           (* data in Stack exists in Mem *)
     lookUpStack E.(stack) v = Some (loc, t) -> 
