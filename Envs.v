@@ -141,7 +141,7 @@ Definition TypeInfo := Loc -> AType.
 (******************************************************************)
 Record Env : Set := MkEnv {  
   mem : Mem; 
-  mem_safe : Mem;
+  mem_normal : Mem;
   stack : Stack;
   typeInfo : TypeInfo }.
 
