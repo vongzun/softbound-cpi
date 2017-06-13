@@ -160,6 +160,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      s_lhs E (C_Var v) (RLoc l) t
 
   (*
+     sensitive t (* SE 2017 *)
      E |-L lhs => (loc, t* )
      M(loc) = Some loc' be
      assert loc' be t*
@@ -167,6 +168,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      E |-L *lhs => (loc', t)
   *)
   | S_Deref : forall E lhs loc be' loc' t q,
+     isSensitive_A t -> (* SE 2017: sensitive type check *)
      s_lhs E lhs (RLoc loc) (A_Pointer (P_AType t) q)  -> (* syntax check *)
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      assertion_ptr loc' be' (A_Pointer (P_AType t) q) -> 
@@ -175,12 +177,14 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      s_lhs E lhs R t -> Error R -> (* Error *)
      s_lhs E (C_Deref lhs) R t'
   | S_Deref_Abort : forall E lhs loc be' loc' t q,
+     isSensitive_A t -> (* SE 2017: sensitive type check *)
      s_lhs E lhs (RLoc loc) (A_Pointer (P_AType t) q) -> (* syntax check *)
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      ~assertion_ptr loc' be' (A_Pointer (P_AType t) q) -> 
      s_lhs E (C_Deref lhs) Abort t
 
   (*
+     sensitive t (* SE 2017 *)
      E |-L lhs => (loc, struct)
      getStructOffSet(t, id) = offset
      getStructType(t, id) = t'
@@ -189,6 +193,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      E |-L lhs.id => (loc+offset, t')
   *)
   | S_StructPos : forall E lhs id loc s q t' offset be' loc',
+     isSensitive_S s -> (* SE 2017: sensitive type check *)
      s_lhs E lhs (RLoc loc) (A_Pointer (P_Struct s) q) ->
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      getStructOffset s id = Some offset ->  (* Syntax check *)
@@ -199,6 +204,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      s_lhs E lhs R t -> Error R ->
      s_lhs E (C_StructPos lhs id) R t'
   | S_StructPos_Abort : forall E lhs id loc s q t' offset be' loc',
+     isSensitive_S s -> (* SE 2017: sensitive type check *)
      s_lhs E lhs (RLoc loc) (A_Pointer (P_Struct s) q) ->
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      getStructOffset s id = Some offset ->  (* Syntax check *)
@@ -209,6 +215,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
   (*
      E |-L lhs => (loc, struct)
      typeTable n = s
+     sensitive s (* SE 2017 *)
      getStructOffSet(t, id) = offset
      getStructType(t, id) = t'
      size t' > 0
@@ -219,6 +226,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      s_lhs E lhs (RLoc loc) (A_Pointer (P_Name n) q) ->
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      typeTable n = Some s ->
+     isSensitive_S s -> (* SE 2017: sensitive type check *)
      getStructOffset s id = Some offset ->  (* Syntax check *)
      getStructType s id = Some t' ->            (* Syntax check *)
      assertion_ptr loc' be' (A_Pointer (P_Name n) q) -> 
@@ -230,6 +238,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      s_lhs E lhs (RLoc loc) (A_Pointer (P_Name n) q) ->
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      typeTable n = Some s ->
+     isSensitive_S s -> (* SE 2017: sensitive type check *)
      getStructOffset s id = Some offset ->  (* Syntax check *)
      getStructType s id = Some t' ->            (* Syntax check *)
      ~ assertion_ptr loc' be' (A_Pointer (P_Name n) q) -> 
@@ -396,7 +405,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Safe rhs) 
                   (RVal ((loc, (0, 0)), (A_Pointer p Safe))) 
                   (A_Pointer p Safe) 
-                  (MkEnv E''.(mem) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) E''.(mem_normal) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_Seq : forall E E' E'' rhs ds loc n be size p,
     s_rhs E rhs (RVal ds) A_Int E'-> (* syntax check *)
     wf_AType (A_Pointer p Seq) ->
@@ -407,7 +416,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Seq rhs) 
                   (RVal ((loc, (loc, loc+n)), (A_Pointer p Seq))) 
                   (A_Pointer p Seq) 
-                  (MkEnv E''.(mem) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) E''.(mem_normal) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_Tame : forall E E' E'' rhs ds loc n be p size,
     s_rhs E rhs (RVal ds) A_Int E'-> (* syntax check *)
     wf_AType (A_Pointer p Tame) ->
@@ -418,7 +427,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Tame rhs) 
                   (RVal ((loc, (loc, loc+n)), (A_Pointer p Tame))) 
                   (A_Pointer p Tame)
-                  (MkEnv E''.(mem) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) E''.(mem_normal) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_ErrorProp : forall E E' rhs R t t' p q,
     s_rhs E rhs R t E'-> Error R -> (* error *)
     wf_AType (A_Pointer p q) ->
