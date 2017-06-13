@@ -183,6 +183,17 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      ~assertion_ptr loc' be' (A_Pointer (P_AType t) q) -> 
      s_lhs E (C_Deref lhs) Abort t
+  
+  (* SE 2017 
+     sensitive t 
+     E |-L lhs => (loc_unsafe, t* ) 
+     ------------------------------
+     E |-L *lhs => Abort 
+  *)
+  | S_Deref_Abort_Unsafe : forall E lhs loc t q,
+      isSensitive_A t -> 
+      s_lhs E lhs (RLocUnsafe loc) (A_Pointer (P_AType t) q) ->
+      s_lhs E (C_Deref lhs) Abort t
 
   (*
      sensitive t (* SE 2017 *)
@@ -212,6 +223,23 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      getStructType s id = Some t' ->            (* Syntax check *)
      ~ assertion_ptr loc' be' (A_Pointer (P_Struct s) q) -> 
      s_lhs E (C_StructPos lhs id) Abort t'
+  (* SE 2017 
+     sensitive t
+     E |-L lhs => (loc_unsafe, struct)
+     getStructOffSet(t, id) = offset
+     getStructType(t, id) = t'
+     -----------------------------
+     E |-L lhs.id => Abort t' 
+  *)
+  | S_StructPos_Abort_Unsafe : forall E lhs id loc s q t' offset,
+     isSensitive_S s ->
+     s_lhs E lsh (RLocUnsafe loc) (A_Pointer (P_Struct s) q) ->
+     getStructOffset s id = Some offset -> (* Syntax check *)
+     getStructType s id = Some t' -> (* Syntax check *)
+     s_lhs E (C_StructPos lhs id) Abort t'
+
+(* SE 2017:
+   CPI does not handle named structure (P_Name) of SoftBound. *)
 
   (*
      E |-L lhs => (loc, struct)
@@ -244,6 +272,23 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      getStructType s id = Some t' ->            (* Syntax check *)
      ~ assertion_ptr loc' be' (A_Pointer (P_Name n) q) -> 
      s_lhs E (C_NamePos lhs id) Abort t'
+  (* SE 2017 
+     sensitive n
+     E |-L lhs => (loc_unsafe, struct)
+     typeTable n = s
+     getStructOffSet(t, id) = offset
+     getStructType(t, id) = t'
+     ----------------------------------
+     E |-L lhs.id => Abort t' 
+  *)
+  | S_NamePos_Abort_Unsafe : forall E lhs id loc n s q t' offset,
+      s_lhs E lhs (RLocUnsafe loc) (A_Pointer (P_Name n) q) ->
+      typeTable n = Some s ->
+      isSensitive_S s ->
+      getStructOffset s id = Some offset ->
+      getStructType s id = Some t' ->
+      s_lhs E (C_NamePos lhs id) Abort t'
+     
   .
 
 Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
