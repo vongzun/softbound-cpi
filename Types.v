@@ -154,6 +154,9 @@ with isSensitive_P (t : PType) : Prop :=
                   | S_Cons _ t' s' => isSensitive_A t' \/ isSensitive_S s'
                   end
   | P_Func _ => True
+  | P_Name n => match (typeTable n) with
+                | Some s => isSensitive_S s
+                | None => False
   | P_VoidPtr => True
   end
 
@@ -249,6 +252,7 @@ Definition getNthPType (p: PType) (ith : nat): option AType :=
     | _ => None
     end
   | P_Struct s => getStructNthType s ith
+  | P_Func _ => None
   | P_Name n => 
     match (typeTable n) with
     | Some s => getStructNthType s ith
@@ -276,6 +280,7 @@ with ptypeEqual : PType -> PType -> Prop :=
   | ptypeEqual_Struct : forall s1 s2,
        structEqual s1 s2 ->
        ptypeEqual (P_Struct s1) (P_Struct s2)
+  | ptypeEqual_Func : ptypeEqual P_Func P_Func
   | ptypeEqual_Name : forall n1 n2 s1 s2,
        typeTable n1 = Some s1 ->
        typeTable n2 = Some s2 ->
@@ -347,6 +352,7 @@ with  isTamePType : PType -> Prop :=
      isTameAType t -> isTamePType (P_AType t)
   | isTamePType_Struct : forall s,
      isTameStruct s -> isTamePType (P_Struct s)
+  | is TamePType_Func : isTamePType P_Func
   | isTamePType_Name : forall n s,
      typeTable n = Some s ->
      isTameStruct s ->
@@ -385,6 +391,7 @@ with  wf_PType : PType -> Prop :=
     wf_PType (P_AType t)
   | wf_P_Struct: forall s,  
     wf_Struct s -> wf_PType (P_Struct s)
+  | wf_P_Func: wf_PType P_Func
   | wf_P_Name: forall n s,  
     typeTable n = Some s ->
     wf_Struct s -> 

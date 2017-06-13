@@ -53,10 +53,12 @@ Inductive c_lhs : Set :=
   | C_Deref : c_lhs -> c_lhs                                       (* *lhs *)
   | C_StructPos : c_lhs -> c_ident -> c_lhs              (* lhs->id *)  
   | C_NamePos : c_lhs -> c_ident -> c_lhs              (* lhs->id *)  
+  | C_FuncPos : c_lhs -> c_ident -> c_lhs             (* lhs->id *)
   .
 
 Inductive c_rhs : Set :=
   | C_Const : nat -> c_rhs                                           (* n *)
+  | C_FuncRef : PType -> Qualifier -> c_lhs -> c_rhs        (* (T*Q)&f *)
   | C_Lhs : c_lhs -> c_rhs                                           (* lhs *)
   | C_Ref : PType -> Qualifier -> c_lhs -> c_rhs                     (*(T*Q)&lhs *)
   | C_Add : c_rhs -> c_rhs -> c_rhs                           (* rhs+rhs *)
@@ -69,6 +71,8 @@ Inductive c_cmd : Set :=
   | C_Skip : c_cmd                                                      (* skip *)
   | C_Seq : c_cmd -> c_cmd -> c_cmd                     (* c1;c2 *)
   | C_Assign : c_lhs -> c_rhs -> c_cmd                     (* lhs=rhs *)
+  | C_FuncCall : c_lhs -> c_cmd                           (* f() *)
+  | C_AddrCall : c_lhs -> c_cmd                           (* (*lhs)() *)
   .
 
 (* 

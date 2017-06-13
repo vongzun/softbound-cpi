@@ -273,9 +273,9 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      ~ assertion_ptr loc' be' (A_Pointer (P_Name n) q) -> 
      s_lhs E (C_NamePos lhs id) Abort t'
   (* SE 2017 
-     sensitive n
      E |-L lhs => (loc_unsafe, struct)
      typeTable n = s
+     sensitive s
      getStructOffSet(t, id) = offset
      getStructType(t, id) = t'
      ----------------------------------
