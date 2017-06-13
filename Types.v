@@ -134,7 +134,8 @@ with Struct : Set :=
 with PType : Set :=
   | P_AType : AType -> PType
   | P_Struct : Struct -> PType
-  | P_Name : c_ident -> PType
+  | P_Func : c_ident -> PType
+  | P_Name : c_ident -> PType 
   | P_VoidPtr: PType
   .
 
@@ -152,7 +153,7 @@ with isSensitive_P (t : PType) : Prop :=
                   | S_Nil => True
                   | S_Cons _ t' s' => isSensitive_A t' \/ isSensitive_S s'
                   end
-  | P_Name _ => True
+  | P_Func _ => True
   | P_VoidPtr => True
   end
 
@@ -195,11 +196,12 @@ Definition sizeOfPType (p : PType) : option nat :=
   match p with
   | P_AType t => Some (sizeOfAType t)
   | P_Struct s => Some (sizeOfStruct s)
+  | P_Func _ => Some 1
   | P_Name n => 
      match (typeTable n) with 
      | Some s => Some (sizeOfStruct s)
      | None => None
-     end
+     end 
   | P_VoidPtr => Some 1
   end
   .
