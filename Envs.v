@@ -331,6 +331,11 @@ Definition wfData (M: Mem) (TI : TypeInfo) (d:Value*Meta) (t: AType): Prop :=
              )
             ) \/
             (v = 0)
+         | P_Func => (* TODO *)
+           (
+            v >= baseAddress /\ v +1 < maxAddress 
+           ) \/
+           (v = 0)
          | P_VoidPtr => False (* because void* can only be Tame *)
          end
     | A_Pointer p Seq =>

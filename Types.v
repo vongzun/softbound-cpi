@@ -134,10 +134,12 @@ with Struct : Set :=
 with PType : Set :=
   | P_AType : AType -> PType
   | P_Struct : Struct -> PType
-  | P_Func : c_ident -> PType
+  | P_Func : PType
   | P_Name : c_ident -> PType 
   | P_VoidPtr: PType
   .
+
+Parameter typeTable : c_ident -> option Struct.
 
 (* SE project 2017 *)
 Fixpoint isSensitive_A (t : AType) : Prop :=
@@ -153,10 +155,8 @@ with isSensitive_P (t : PType) : Prop :=
                   | S_Nil => True
                   | S_Cons _ t' s' => isSensitive_A t' \/ isSensitive_S s'
                   end
-  | P_Func _ => True
-  | P_Name n => match (typeTable n) with
-                | Some s => isSensitive_S s
-                | None => False
+  | P_Func => True
+  | P_Name n => True (* TODO: lookup typeTable and return sensitive of struct *)
   | P_VoidPtr => True
   end
 
@@ -169,8 +169,6 @@ with isSensitive_S (t : Struct) : Prop :=
 Parameter isSensitiveDec : forall t : AType, {isSensitive_A t} 
                                               + {~isSensitive_A t}.
 (* SE project 2017 *)
-
-Parameter typeTable : c_ident -> option Struct.
 
 Scheme AType_mut_ind := Induction for AType Sort Prop
 with Struct_mut_ind := Induction for Struct Sort Prop
@@ -199,7 +197,7 @@ Definition sizeOfPType (p : PType) : option nat :=
   match p with
   | P_AType t => Some (sizeOfAType t)
   | P_Struct s => Some (sizeOfStruct s)
-  | P_Func _ => Some 1
+  | P_Func => Some 1
   | P_Name n => 
      match (typeTable n) with 
      | Some s => Some (sizeOfStruct s)
@@ -252,7 +250,7 @@ Definition getNthPType (p: PType) (ith : nat): option AType :=
     | _ => None
     end
   | P_Struct s => getStructNthType s ith
-  | P_Func _ => None
+  | P_Func => None
   | P_Name n => 
     match (typeTable n) with
     | Some s => getStructNthType s ith
@@ -352,7 +350,7 @@ with  isTamePType : PType -> Prop :=
      isTameAType t -> isTamePType (P_AType t)
   | isTamePType_Struct : forall s,
      isTameStruct s -> isTamePType (P_Struct s)
-  | is TamePType_Func : isTamePType P_Func
+  | isTamePType_Func : isTamePType P_Func
   | isTamePType_Name : forall n s,
      typeTable n = Some s ->
      isTameStruct s ->

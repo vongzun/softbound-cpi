@@ -233,7 +233,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
   *)
   | S_StructPos_Abort_Unsafe : forall E lhs id loc s q t' offset,
      isSensitive_S s ->
-     s_lhs E lsh (RLocUnsafe loc) (A_Pointer (P_Struct s) q) ->
+     s_lhs E lhs (RLocUnsafe loc) (A_Pointer (P_Struct s) q) ->
      getStructOffset s id = Some offset -> (* Syntax check *)
      getStructType s id = Some t' -> (* Syntax check *)
      s_lhs E (C_StructPos lhs id) Abort t'
