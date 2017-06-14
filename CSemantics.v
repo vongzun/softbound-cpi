@@ -238,9 +238,6 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      getStructType s id = Some t' -> (* Syntax check *)
      s_lhs E (C_StructPos lhs id) Abort t'
 
-(* SE 2017:
-   CPI does not handle named structure (P_Name) of SoftBound. *)
-
   (*
      E |-L lhs => (loc, struct)
      typeTable n = s
