@@ -1315,8 +1315,8 @@ Proof.
     apply structEqual_Cons; auto.
     apply ptypeEqual_AType; auto.
     apply ptypeEqual_Struct; auto.
-    eapply ptypeEqual_EqName; eauto.
     apply ptypeEqual_Func; auto.
+    eapply ptypeEqual_EqName; eauto.
     apply ptypeEqual_VoidPtr; auto.
 Qed.
 
@@ -1423,6 +1423,7 @@ Proof.
     apply structEqual_Cons; auto.
     apply ptypeEqual_AType; auto.
     apply ptypeEqual_Struct; auto.
+    apply ptypeEqual_Func; auto.
     eapply ptypeEqual_Name; eauto.
     eapply ptypeEqual_EqName; eauto.
     apply ptypeEqual_VoidPtr; auto.

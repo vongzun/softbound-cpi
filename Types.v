@@ -175,10 +175,10 @@ with Struct_mut_ind := Induction for Struct Sort Prop
 with PType_mut_ind := Induction for PType Sort Prop.
 
 Definition mutual_AType_Struct_ind P P' P'':=
-  fun h1 h2 h3 h4 h5 h6 h7 h8=>
-    conj (@AType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8)
-           (conj  (@Struct_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8)
-                     (@PType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8)).
+  fun h1 h2 h3 h4 h5 h6 h7 h8 h9=>
+    conj (@AType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9)
+           (conj  (@Struct_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9)
+                     (@PType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9)).
 
 Fixpoint sizeOfAType (t : AType) : nat :=
   match t with
