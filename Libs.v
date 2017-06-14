@@ -1316,6 +1316,7 @@ Proof.
     apply ptypeEqual_AType; auto.
     apply ptypeEqual_Struct; auto.
     eapply ptypeEqual_EqName; eauto.
+    apply ptypeEqual_Func; auto.
     apply ptypeEqual_VoidPtr; auto.
 Qed.
 

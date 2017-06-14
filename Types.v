@@ -301,10 +301,10 @@ with structEqual_mut_ind := Induction for structEqual Sort Prop
 with ptypeEqual_mut_ind := Induction for ptypeEqual Sort Prop.
 
 Definition mutual_atype_struct_ptype_Equal_ind P P' P'':=
-  fun h1 h2 h3 h4 h5 h6 h7 h8 h9=>
-    conj (@atypeEqual_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9)
-         (conj (@structEqual_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9)
-                  (@ptypeEqual_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9)).
+  fun h1 h2 h3 h4 h5 h6 h7 h8 h9 h10=>
+    conj (@atypeEqual_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10)
+         (conj (@structEqual_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10)
+                  (@ptypeEqual_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10)).
 
 Definition convertible (t1 t2: AType) : Prop :=
   match (t1, t2) with
@@ -402,10 +402,10 @@ with wf_Struct_mut_ind := Induction for wf_Struct Sort Prop
 with wf_PType_mut_ind := Induction for wf_PType Sort Prop.
 
 Definition mutual_wf_AType_Struct_PType_ind P P' P'':=
-  fun h1 h2 h3 h4 h5 h6 h7 h8 h9 h10=>
-    conj (@wf_AType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10)
-         (conj (@wf_Struct_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10)
-                  (@wf_PType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10)).
+  fun h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11=>
+    conj (@wf_AType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11)
+         (conj (@wf_Struct_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11)
+                  (@wf_PType_mut_ind P P' P'' h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11)).
 
 Definition nat_of_Z (z: Z) : nat :=
   match z with

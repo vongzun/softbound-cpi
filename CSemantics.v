@@ -451,7 +451,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Safe rhs) 
                   (RVal ((loc, (0, 0)), (A_Pointer p Safe))) 
                   (A_Pointer p Safe) 
-                  (MkEnv E''.(mem) (*UNSAFE MEM*) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) E''.(mem_unsafe) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_Seq : forall E E' E'' rhs ds loc n be size p,
     s_rhs E rhs (RVal ds) A_Int E'-> (* syntax check *)
     wf_AType (A_Pointer p Seq) ->
@@ -462,7 +462,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Seq rhs) 
                   (RVal ((loc, (loc, loc+n)), (A_Pointer p Seq))) 
                   (A_Pointer p Seq) 
-                  (MkEnv E''.(mem) (*UNSAFE MEM*) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) E''.(mem_unsafe) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_Tame : forall E E' E'' rhs ds loc n be p size,
     s_rhs E rhs (RVal ds) A_Int E'-> (* syntax check *)
     wf_AType (A_Pointer p Tame) ->
@@ -473,7 +473,7 @@ Inductive  s_rhs : Env -> c_rhs -> Result  -> AType -> Env -> Prop :=
     s_rhs E (C_Alloc p Tame rhs) 
                   (RVal ((loc, (loc, loc+n)), (A_Pointer p Tame))) 
                   (A_Pointer p Tame)
-                  (MkEnv E''.(mem) (*UNSAFE MEM*) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
+                  (MkEnv E''.(mem) E''.(mem_unsafe) E''.(stack) (updateTypeInfo E''.(typeInfo) loc p n))
   | S_Alloc_ErrorProp : forall E E' rhs R t t' p q,
     s_rhs E rhs R t E'-> Error R -> (* error *)
     wf_AType (A_Pointer p q) ->
@@ -537,7 +537,7 @@ Inductive s_cmd : Env -> c_cmd -> Result-> Env->Prop :=
     assertion_dataCast tl (fst ds) tr ->
     storeMemMeta E'.(mem) loc d = Some M''->
     convertible tl tr ->      (* syntax checking *)
-    s_cmd E (C_Assign lhs rhs) ROK (MkEnv M'' E'.(stack) E'.(typeInfo))
+    s_cmd E (C_Assign lhs rhs) ROK (MkEnv M'' E'.(mem_unsafe) E'.(stack) E'.(typeInfo))
   | S_Assign_NPtr : forall E E' lhs rhs loc tl ds tr M'' d, 
     s_lhs E lhs (RLoc loc) tl ->
     s_rhs E rhs (RVal ds) tr E' ->
@@ -546,7 +546,7 @@ Inductive s_cmd : Env -> c_cmd -> Result-> Env->Prop :=
     assertion_dataCast tl (fst ds) tr ->
     storeMem E'.(mem) loc (fst d) = Some M''->
     convertible tl tr ->      (* syntax checking *)
-    s_cmd E (C_Assign lhs rhs) ROK (MkEnv M'' E'.(stack) E'.(typeInfo))
+    s_cmd E (C_Assign lhs rhs) ROK (MkEnv M'' E'.(mem_unsafe) E'.(stack) E'.(typeInfo))
   | S_Assign_ErrorProp1 : forall E lhs rhs tl R, 
     s_lhs E lhs R tl -> Error R->
     s_cmd E (C_Assign lhs rhs) R E
