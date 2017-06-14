@@ -174,6 +174,32 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      accessMemMeta E.(mem) loc = Some (loc', be') ->  (* runtime violation check *)
      assertion_ptr loc' be' (A_Pointer (P_AType t) q) -> 
      s_lhs E (C_Deref lhs) (RLoc loc') t 
+  (*
+     sensitive t (* SE 2017 *)
+     E |-L lhs => (loc, t* )
+     M(loc) = None
+     M_Unsafe(loc) = Some loc_unsafe'
+     --------------------------------
+     E |-L *lhs => (loc_unsafe', t)
+  *)
+  | S_Deref_Unsafe1 : forall E lhs loc loc_unsafe' t q,
+     isSensitive_A t -> (* SE 2017: sensitive type check *)
+     s_lhs E lhs (RLoc loc) (A_Pointer (P_AType t) q)  -> (* syntax check *)
+     accessMem E.(mem) loc = None ->  (* runtime violation check *)
+     accessMem E.(mem_unsafe) loc = Some loc_unsafe' ->  (* runtime violation check *)
+     s_lhs E (C_Deref lhs) (RLocUnsafe loc_unsafe') t 
+  (*
+     ~sensitive t (* SE 2017 *)
+     E |-L lhs => (loc, t*)
+     M_Unsafe(loc) = Some loc_unsafe'
+     --------------------------------
+     E |-L *lhs => (loc_unsafe', t)
+  *)
+  | S_Deref_Unsafe2 : forall E lhs loc loc_unsafe' t q,
+     isSensitive_A t -> (* SE 2017: sensitive type check *)
+     s_lhs E lhs (RLoc loc) (A_Pointer (P_AType t) q)  -> (* @@@@ CHECK @@@@ : neither s & u?  syntax check *)
+     accessMem E.(mem_unsafe) loc = Some loc_unsafe' ->  (* runtime violation check *)
+     s_lhs E (C_Deref lhs) (RLocUnsafe loc_unsafe') t 
   | S_Deref_ErrorProp : forall E lhs R t t',
      s_lhs E lhs R t -> Error R -> (* Error *)
      s_lhs E (C_Deref lhs) R t'
@@ -559,4 +585,46 @@ Inductive s_cmd : Env -> c_cmd -> Result-> Env->Prop :=
     ~ assertion_dataCast tl (fst ds) tr ->
     convertible tl tr ->      (* syntax checking *)
     s_cmd E (C_Assign lhs rhs) Abort E'
+  (* SE 2017
+    sensitive t
+    E |-L lhs => (loc_unsafe, t)
+    ----------------------------
+    E |-C lhs = rhs => (Abort, E)
+  | S_Assign_Abort_Unsafe : forall E lhs rhs loc t,
+    isSensitive_A t ->
+    s_lhs E lhs (RLocUnsafe loc) t ->
+    s_cmd E (C_Assign lhs rhs) Abort E
+  (* SE 2017
+    sensitive t 
+    E |- lhs => (loc, tl)
+    E |- rhs => (v, tr)
+    M_Unsafe[loc] = Some M_Unsafe'
+    ------------------------------
+    E |-C lhs = rhs => E'[loc->v]
+  *)
+  | S_Assign_Unsafe_Write1 : forall E E' lhs rhs loc tl ds tr M'' d,
+    isSensitive_A t ->
+    s_lhs E lhs (RLoc loc) tl ->
+    s_rhs E rhs (RVal ds) tr E' ->
+    dataCast tl (fst ds) tr = Some d ->
+    storeMem E'.(mem_unsafe) loc (fst d) = Some M''->
+    storeMem E'.(mem) loc (fst None) = Some M'' -> (* CHECK *)
+    convertible tl tr ->    (* CHECK convertible ? *)
+    s_cmd E (C_Assign lhs rhs) ROK (MkEnv M'' E'.(mem_unsafe) E'.(stack) E'.(typeInfo))
+  (* SE 2017
+    ~sensitive t
+    E |- lhs => (loc, tl)
+    E |- rhs => (v, tr)
+    M_Unsafe[loc] = Some M_Unsafe'
+    ------------------------------
+    E |-C lhs = rhs => E'[loc->v]
+  *)
+  | S_Assign_Unsafe_Write2 : forall E E' lhs rhs loc tl ds tr M'' d,
+    ~IsSensitive_A t ->
+    s_lhs E lhs (RLocUnsafe loc) tl ->
+    s_rhs E rhs (RVal ds) tr E' ->
+    dataCast tl (fst ds) tr = Some d ->
+    storeMem E'.(mem_unsafe) loc (fst d) = Some M''->
+    convertible tl tr ->    (* CHECK convertible ? *)
+    s_cmd E (C_Assign lhs rhs) ROK (MkEnv M'' E'.(mem_unsafe) E'.(stack) E'.(typeInfo))
   .
