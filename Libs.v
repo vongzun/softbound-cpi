@@ -1508,6 +1508,7 @@ Proof.
       apply optionAtypeEqual_some; auto.
     apply optionAtypeEqual_none.
     apply structEqual__getStructNthPType; auto.
+    apply optionAtypeEqual_none.
     rewrite H. rewrite H0. apply structEqual__getStructNthPType; auto.
     destruct (typeTable n).
       destruct (getStructNthType s i).
