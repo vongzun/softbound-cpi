@@ -190,7 +190,7 @@ Inductive s_lhs : Env -> c_lhs -> Result -> AType -> Prop :=
      s_lhs E (C_Deref lhs) (RLocUnsafe loc_unsafe') t 
   (*
      ~sensitive t (* SE 2017 *)
-     E |-L lhs => (loc, t*)
+     E |-L lhs => (loc, t* )
      M_Unsafe(loc) = Some loc_unsafe'
      --------------------------------
      E |-L *lhs => (loc_unsafe', t)
@@ -590,6 +590,7 @@ Inductive s_cmd : Env -> c_cmd -> Result-> Env->Prop :=
     E |-L lhs => (loc_unsafe, t)
     ----------------------------
     E |-C lhs = rhs => (Abort, E)
+  *)
   | S_Assign_Abort_Unsafe : forall E lhs rhs loc t,
     isSensitive_A t ->
     s_lhs E lhs (RLocUnsafe loc) t ->
@@ -603,12 +604,12 @@ Inductive s_cmd : Env -> c_cmd -> Result-> Env->Prop :=
     E |-C lhs = rhs => E'[loc->v]
   *)
   | S_Assign_Unsafe_Write1 : forall E E' lhs rhs loc tl ds tr M'' d,
-    isSensitive_A t ->
+    isSensitive_A tl ->
     s_lhs E lhs (RLoc loc) tl ->
     s_rhs E rhs (RVal ds) tr E' ->
     dataCast tl (fst ds) tr = Some d ->
     storeMem E'.(mem_unsafe) loc (fst d) = Some M''->
-    storeMem E'.(mem) loc (fst None) = Some M'' -> (* CHECK *)
+    (*storeMem E'.(mem) loc NONE = Some M'' -> (* XXX: NONE???? *) *)
     convertible tl tr ->    (* CHECK convertible ? *)
     s_cmd E (C_Assign lhs rhs) ROK (MkEnv M'' E'.(mem_unsafe) E'.(stack) E'.(typeInfo))
   (* SE 2017
@@ -620,7 +621,7 @@ Inductive s_cmd : Env -> c_cmd -> Result-> Env->Prop :=
     E |-C lhs = rhs => E'[loc->v]
   *)
   | S_Assign_Unsafe_Write2 : forall E E' lhs rhs loc tl ds tr M'' d,
-    ~IsSensitive_A t ->
+    ~isSensitive_A tl ->
     s_lhs E lhs (RLocUnsafe loc) tl ->
     s_rhs E rhs (RVal ds) tr E' ->
     dataCast tl (fst ds) tr = Some d ->
