@@ -1555,8 +1555,8 @@ Qed.
 (*                       wfEnv                                             *)
 (***************************************************************************)
 
-Lemma wfE__storeMemMeta__wfE : forall M S TI loc d M' t,
-  wfEnv (MkEnv M S TI) ->
+Lemma wfE__storeMemMeta__wfE : forall M Mu S TI loc d M' t,
+  wfEnv (MkEnv M Mu S TI) ->
   wfData M TI d t ->
   storeMemMeta M loc d = Some M' -> 
   (
@@ -1565,7 +1565,7 @@ Lemma wfE__storeMemMeta__wfE : forall M S TI loc d M' t,
   (forall p, t = A_Pointer p Seq -> atypeEqual (TI loc) (A_Pointer p Seq)) /\
   (forall p, t = A_Pointer p Tame -> exists q, atypeEqual (TI loc) (A_Pointer q Tame))
   ) ->
-  wfEnv (MkEnv M' S TI).
+  wfEnv (MkEnv M' Mu S TI).
 Proof.
   intros. rename H2 into W.
   unfold wfEnv in *. decompose [and] H. clear H.
@@ -1620,6 +1620,7 @@ Proof.
                assert(JK':=@structEqual__getStructNthPType s1 s i JK).
                eapply optionAtypeEqual_trans; eauto.
                  apply optionAtypeEqual_symm; auto.
+           (*func*)
            (*name*)
            inversion JpEq; subst. rename H9 into JsEq.
            unfold wfData.
